@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#241449">
+  <meta name="description" content="Boba Maxxing: Order your boba .">
+
+  <title>Boba Maxxing</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='27' font-size='27'%3E🧋%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="Boba Maxxing">
+  <meta property="og:description" content=" Build your dream boba drink.">
+  <meta property="og:image" content="img/opengraph.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Boba Maxxing">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+  <!-- Welcome screen -->
+  <div id="start-screen">
+    <div class="pixel-badge">★ BOBA.EXE ★</div>
+
+    <!-- Replace img/start.png with your attached Booba image path if needed. -->
+    <img id="booba-logo" src="img/start.png"
+         alt="Boba"
+         onerror="this.style.display='none'">
+
+    <h1>BOBA MAXXING</h1>
+    <p class="welcome-copy">HERE AT BOBA BASH</p>
+    
+    <button id="start-button">PRESS START</button>
+    <p class="tiny-note">INSERT COINS? NAH. INSERT BOBA.</p>
+  </div>
+
+  <!-- Main application -->
+  <main id="container">
+    <header class="site-header">
+      <div class="header-title">
+        <span class="pixel-star">✦</span>
+        <h1>BOBA MAXXING</h1>
+        <span class="pixel-star">✦</span>
+      </div>
+      <p class="subtitle">YOUR DRINK. YOUR CHAOS. YOUR RULES.</p>
+    </header>
+
+    <div id="polaroid-wrapper">
+      <!-- Drink preview -->
+      <div id="drink-preview" aria-label="Your custom boba drink">
+        <img id="drink-base" src="img/cup.png" alt="Empty boba cup">
+        <img id="tea-overlay" src="" alt="Selected tea" hidden>
+        <img id="ice-overlay" src="" alt="Selected ice" hidden>
+        <img id="topping-overlay" src="" alt="Selected topping" hidden>
+      </div>
+
+      <!-- Receipt -->
+      <section id="receipt-container" aria-label="Order receipt">
+        <div id="drink-name" aria-live="polite">
+          <p>YOUR QUEST BEGINS HERE...</p>
+          <p>SELECT A TEA TO GENERATE YOUR RECEIPT.</p>
+        </div>
+      </section>
+    </div>
+
+    <div id="checkout-container">
+      <button id="checkout-button">LOCK IN THIS BOBA</button>
+    </div>
+
+    <!-- Checkout confirmation -->
+    <section id="checkout-options" style="display: none;">
+      <h2 id="order-message"></h2>
+      <p class="checkout-subtitle">YOUR BOBA ORDER ISREADY.</p>
+      <button id="order-another-button">ANOTHER ROUND?</button>
+    </section>
+
+    <!-- Customization -->
+    <section id="panel" aria-label="Customize your drink">
+      <div class="tabs" role="tablist" aria-label="Drink options">
+        <button class="tab-button active" data-tab="tea-options"
+                role="tab" aria-selected="true">TEA</button>
+        <button class="tab-button" data-tab="topping-options"
+                role="tab" aria-selected="false">TOPPINGS</button>
+        <button class="tab-button" data-tab="ice-options"
+                role="tab" aria-selected="false">ICE</button>
+        <button class="tab-button" data-tab="sweetness-options"
+                role="tab" aria-selected="false">SUGAR</button>
+      </div>
+
+      <!-- Tea flavors -->
+      <div class="tab-content active" id="tea-options" role="tabpanel">
+        <div class="options-grid">
+          <button class="option" type="button" data-type="tea"
+                  data-value="moon-taro">
+            <img src="img/icons/Jasmine.png" alt="">
+            <span>MATCHA</span>
+            <small>Rs. 480</small>
+          </button>
+
+          <button class="option" type="button" data-type="tea"
+                  data-value="goblin-peach">
+            <img src="img/icons/Mango.png" alt="">
+            <span>MANGO</span>
+            <small>Rs. 520</small>
+          </button>
+
+          <button class="option" type="button" data-type="tea"
+                  data-value="cosmic-strawberry">
+            <img src="img/icons/Black.png" alt="">
+            <span>BLACK</span>
+            <small>Rs. 500</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Toppings -->
+      <div class="tab-content" id="topping-options" role="tabpanel">
+        <div class="options-grid">
+          <button class="option" type="button" data-type="topping"
+                  data-value="chaos-pearls">
+            <img src="img/icons/boba.png" alt="">
+            <span>BOBA</span>
+            <small>+ Rs. 60</small>
+          </button>
+
+          <button class="option" type="button" data-type="topping"
+                  data-value="unicorn-glitter">
+            <img src="img/icons/lychee.png" alt="">
+            <span>LYCHEE</span>
+            <small>+ Rs. 80</small>
+          </button>
+
+          <button class="option" type="button" data-type="topping"
+                  data-value="cereal-meteors">
+            <img src="img/icons/red-bean.png" alt="">
+            <span>RED BEAN</span>
+            <small>+ Rs. 100</small>
+          </button>
+
+          <button class="option" type="button" data-type="topping"
+                  data-value="none">
+            <span class="emoji-option">🚫</span>
+            <span>NO CHAOS</span>
+            <small>FREE</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ice levels -->
+      <div class="tab-content" id="ice-options" role="tabpanel">
+        <div class="options-grid">
+          <button class="option" type="button" data-type="ice"
+                  data-value="none">
+            <img src="img/icons/no-ice.png" alt="">
+            <span>NO ICE</span>
+            <small>0% ICE</small>
+          </button>
+
+          <button class="option" type="button" data-type="ice"
+                  data-value="less">
+            <img src="img/icons/less-ice.png" alt="">
+            <span>LESS ICE</span>
+            <small>25% ICE</small>
+          </button>
+
+          <button class="option" type="button" data-type="ice"
+                  data-value="regular">
+            <img src="img/icons/normal-ice.png" alt="">
+            <span>REGULAR ICE</span>
+            <small>100% ICE</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sweetness levels -->
+      <div class="tab-content" id="sweetness-options" role="tabpanel">
+        <div class="options-grid">
+          <button class="option" type="button" data-type="sweetness"
+                  data-value="zero">
+            <span class="emoji-option">🫥</span>
+            <span>ZERO SUGAR</span>
+            <small>0%</small>
+          </button>
+
+          <button class="option" type="button" data-type="sweetness"
+                  data-value="half">
+            <span class="emoji-option">🍬</span>
+            <span>HALF SWEET</span>
+            <small>50%</small>
+          </button>
+
+          <button class="option" type="button" data-type="sweetness"
+                  data-value="regular">
+            <span class="emoji-option">🍭</span>
+            <span>REGULAR SWEET</span>
+            <small>100%</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milk confirmation popup -->
+    <div id="confirmation-popup" class="confirmation-popup"
+         role="dialog" aria-modal="true"
+         aria-labelledby="confirmation-message">
+      <div class="popup-content">
+        <p id="confirmation-message">ADD MILK TO YOUR QUEST?</p>
+        <div class="popup-buttons">
+          <button id="yes-button" class="popup-button">YES, MILK</button>
+          <button id="no-button" class="popup-button">NO MILK</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

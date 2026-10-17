@@ -1,0 +1,852 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* =========================
+   BOBA MAXXING: PIXEL THEME
+   ========================= */
+
+:root {
+  --bg: #17112d;
+  --panel: #271b49;
+  --panel-light: #38255f;
+  --purple: #7554c9;
+  --pink: #ff80bd;
+  --cyan: #83f5ee;
+  --yellow: #ffe38a;
+  --white: #fff8ff;
+  --muted: #d4c5f5;
+  --dark: #100b20;
+  --pixel-border: 4px solid var(--dark);
+  --shadow: 5px 5px 0 var(--dark);
+  --pixel-font: "Press Start 2P", monospace;
+  --receipt-font: "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(131, 245, 238, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(131, 245, 238, 0.045) 1px, transparent 1px),
+    radial-gradient(ellipse at top, #38205b, var(--bg) 70%);
+  background-size: 24px 24px, 24px 24px, auto;
+  color: var(--white);
+  font-family: var(--pixel-font);
+  font-size: 10px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline: 3px dashed var(--cyan);
+  outline-offset: 5px;
+}
+
+img {
+  image-rendering: auto;
+}
+
+/* =========================
+   WELCOME SCREEN
+   ========================= */
+
+#start-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  overflow-y: auto;
+  text-align: center;
+  background-color: #21153e;
+  background-image:
+    linear-gradient(rgba(255, 128, 189, 0.06) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 128, 189, 0.06) 2px, transparent 2px);
+  background-size: 32px 32px;
+}
+
+.pixel-badge {
+  margin-bottom: 8px;
+  padding: 9px 12px;
+  color: var(--cyan);
+  border: 2px solid var(--cyan);
+  box-shadow: 4px 4px 0 var(--dark);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+#booba-logo {
+  display: block;
+  width: min(62vw, 300px);
+  max-height: 34vh;
+  object-fit: contain;
+  margin: 6px 0;
+  image-rendering: auto;
+  filter: drop-shadow(6px 6px 0 rgba(0, 0, 0, 0.25));
+}
+
+#start-screen h1 {
+  max-width: 700px;
+  margin: 10px 0;
+  color: var(--pink);
+  font-family: var(--pixel-font);
+  font-size: clamp(20px, 4vw, 34px);
+  line-height: 1.7;
+  text-shadow: 4px 4px 0 #6e347f;
+  overflow-wrap: anywhere;
+}
+
+.welcome-copy {
+  color: var(--yellow);
+  font-size: 10px;
+  line-height: 2;
+}
+
+.tiny-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 2;
+}
+
+/* Shared pixel buttons */
+
+#start-button,
+#checkout-button,
+#order-another-button,
+.tab-button,
+.option,
+.popup-button {
+  border: var(--pixel-border);
+  border-radius: 0;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.12s ease;
+}
+
+#start-button {
+  width: min(100%, 330px);
+  padding: 17px 12px;
+  margin-top: 10px;
+  background: var(--pink);
+  color: var(--dark);
+  font-family: var(--pixel-font);
+  font-size: 11px;
+  line-height: 2;
+}
+
+#start-button:hover {
+  background: var(--yellow);
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--dark);
+}
+
+#start-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dark);
+}
+
+/* =========================
+   MAIN APP
+   ========================= */
+
+#container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 16px 340px;
+  position: relative;
+  gap: 12px;
+}
+
+.site-header {
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+  padding: 12px 8px 4px;
+}
+
+.header-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-title h1 {
+  margin: 0;
+  color: var(--pink);
+  font-size: clamp(13px, 2.6vw, 23px);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  text-shadow: 4px 4px 0 #503177;
+}
+
+.pixel-star {
+  color: var(--yellow);
+  font-size: 18px;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--cyan);
+  font-size: 8px;
+  line-height: 2;
+}
+
+/* =========================
+   DRINK PREVIEW
+   ========================= */
+
+#polaroid-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 520px);
+  padding: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#drink-preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 220px;
+  height: 230px;
+  max-width: 70vw;
+  overflow: hidden;
+}
+
+#drink-base,
+#tea-overlay,
+#ice-overlay,
+#topping-overlay {
+  position: absolute;
+  width: 84%;
+  height: 90%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+#drink-base {
+  z-index: 2;
+}
+
+#tea-overlay {
+  z-index: 1;
+}
+
+#ice-overlay {
+  z-index: 3;
+}
+
+#topping-overlay {
+  z-index: 4;
+}
+
+#tea-overlay:not([hidden]),
+#ice-overlay:not([hidden]),
+#topping-overlay:not([hidden]) {
+  animation: pixelPop 0.2s ease-out;
+}
+
+@keyframes pixelPop {
+  from {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   RECEIPT
+   ========================= */
+
+#receipt-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+}
+
+#drink-name {
+  width: 100%;
+  max-width: 410px;
+  padding: 16px 18px;
+  color: #241c32;
+  background-color: #fffdf3;
+  border: 2px dashed #81778d;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.28);
+  font-family: var(--receipt-font);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+#drink-name strong {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+#drink-name p {
+  margin: 5px 0;
+}
+
+.receipt-line {
+  width: 100%;
+  margin: 10px 0;
+  border-top: 1px dashed #a69aad;
+}
+
+.receipt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px 0;
+  text-align: left;
+}
+
+.receipt-total {
+  margin-top: 10px;
+  font-family: var(--receipt-font);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.receipt-timestamp {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+/* Receipt polaroid state */
+
+#polaroid-wrapper.polaroid-active {
+  width: min(100%, 500px);
+  padding: 20px 14px;
+  background: #f9f3ff;
+  border: 7px solid #b7a4dd;
+  box-shadow: 8px 8px 0 var(--dark);
+}
+
+#polaroid-wrapper.polaroid-active #drink-name {
+  box-shadow: none;
+}
+
+#polaroid-wrapper.polaroid-active #drink-preview {
+  animation: floatBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* =========================
+   CHECKOUT
+   ========================= */
+
+#checkout-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 6px 0 20px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#checkout-container.ready {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#checkout-button {
+  width: min(100%, 370px);
+  padding: 16px 12px;
+  background: var(--cyan);
+  color: var(--dark);
+  font-family: var(--pixel-font);
+  font-size: 10px;
+  line-height: 2;
+}
+
+#checkout-button:hover {
+  filter: brightness(1.1);
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--dark);
+}
+
+#checkout-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dark);
+}
+
+#checkout-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 650px);
+  gap: 10px;
+  padding: 14px;
+  text-align: center;
+}
+
+#checkout-options h2 {
+  color: var(--yellow);
+  font-family: var(--pixel-font);
+  font-size: clamp(12px, 2vw, 18px);
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.checkout-subtitle {
+  color: var(--cyan);
+  font-size: 9px;
+  line-height: 2;
+}
+
+#order-another-button {
+  width: min(100%, 370px);
+  padding: 16px 12px;
+  background: var(--pink);
+  color: var(--dark);
+  font-size: 10px;
+  line-height: 2;
+}
+
+#order-another-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--dark);
+}
+
+#order-another-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dark);
+}
+
+/* =========================
+   MENU PANEL
+   ========================= */
+
+#panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 720px;
+  padding: 14px 12px 20px;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(23, 17, 45, 0.97);
+  border-top: 3px solid var(--purple);
+  box-shadow: 0 -6px 0 rgba(0, 0, 0, 0.12);
+  max-height: 57vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  width: 100%;
+}
+
+.tab-button {
+  min-width: 0;
+  padding: 12px 4px;
+  background: var(--panel-light);
+  color: var(--white);
+  font-family: var(--pixel-font);
+  font-size: 8px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.tab-button:hover {
+  filter: brightness(1.2);
+}
+
+.tab-button.active {
+  background: var(--purple);
+  border-color: var(--cyan);
+  color: white;
+  box-shadow: 3px 3px 0 var(--dark);
+}
+
+.tab-button:active,
+.option:active,
+.popup-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dark);
+}
+
+/* Tab visibility */
+
+.tab-content {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  padding: 4px;
+}
+
+/* =========================
+   MENU CARDS
+   ========================= */
+
+.option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 130px;
+  padding: 10px 6px;
+  background: var(--panel-light);
+  color: var(--white);
+  font-family: var(--pixel-font);
+  font-size: 8px;
+  line-height: 1.9;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.option img {
+  display: block;
+  width: auto;
+  height: 34px;
+  max-width: 50px;
+  object-fit: contain;
+}
+
+.option span {
+  display: block;
+}
+
+.option small {
+  display: block;
+  margin-top: 3px;
+  color: var(--yellow);
+  font-family: var(--pixel-font);
+  font-size: 7px;
+  line-height: 1.8;
+}
+
+.emoji-option {
+  font-family: sans-serif;
+  font-size: 25px;
+  line-height: 1.5;
+}
+
+.option:hover {
+  filter: brightness(1.2);
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--dark);
+}
+
+.option.selected {
+  background: #573a87;
+  border-color: var(--cyan);
+  box-shadow: 3px 3px 0 var(--dark);
+  outline: 2px dashed var(--pink);
+  outline-offset: -7px;
+}
+
+.option.selected small {
+  color: var(--cyan);
+}
+
+/* =========================
+   MILK POPUP
+   ========================= */
+
+.confirmation-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  background: rgba(8, 4, 20, 0.8);
+}
+
+.confirmation-popup.show {
+  display: flex;
+  animation: popupFade 0.18s ease-out;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.popup-content {
+  width: min(100%, 390px);
+  padding: 24px 18px;
+  background: var(--panel);
+  border: 4px solid var(--pink);
+  box-shadow: 8px 8px 0 var(--dark);
+  text-align: center;
+}
+
+#confirmation-message {
+  margin: 0 0 22px;
+  color: var(--yellow);
+  font-family: var(--pixel-font);
+  font-size: 11px;
+  line-height: 2.2;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.popup-button {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 8px;
+  background: var(--purple);
+  color: var(--white);
+  font-size: 8px;
+  line-height: 2;
+}
+
+.popup-button:hover {
+  background: var(--pink);
+  color: var(--dark);
+}
+
+/* =========================
+   RESPONSIVE LAYOUT
+   ========================= */
+
+@media (min-width: 900px) {
+  #container {
+    padding-bottom: 30px;
+  }
+
+  #panel {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 8px auto 20px;
+    border: 3px solid var(--purple);
+    box-shadow: 6px 6px 0 var(--dark);
+    max-height: none;
+  }
+
+  #polaroid-wrapper {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+
+  #drink-preview {
+    flex: 0 0 190px;
+    width: 190px;
+    max-width: 190px;
+  }
+
+  #receipt-container {
+    flex: 1;
+  }
+
+  #drink-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 8px;
+  }
+
+  #container {
+    padding: 12px 8px 330px;
+    gap: 8px;
+  }
+
+  .site-header {
+    padding-top: 8px;
+  }
+
+  .header-title {
+    gap: 5px;
+  }
+
+  .header-title h1 {
+    font-size: 12px;
+  }
+
+  .pixel-star {
+    font-size: 13px;
+  }
+
+  .subtitle {
+    font-size: 7px;
+  }
+
+  #drink-preview {
+    width: 170px;
+    height: 175px;
+  }
+
+  #polaroid-wrapper {
+    padding: 4px;
+    gap: 8px;
+  }
+
+  #drink-name {
+    padding: 12px 10px;
+    font-size: 11px;
+  }
+
+  #drink-name strong {
+    font-size: 12px;
+  }
+
+  .receipt-total {
+    font-size: 16px;
+  }
+
+  #panel {
+    padding: 10px 6px 12px;
+    gap: 8px;
+    max-height: 55vh;
+  }
+
+  .tabs {
+    gap: 5px;
+  }
+
+  .tab-button {
+    padding: 10px 2px;
+    font-size: 7px;
+    border-width: 3px;
+  }
+
+  .options-grid {
+    gap: 7px;
+    padding: 3px;
+  }
+
+  .option {
+    min-height: 112px;
+    padding: 7px 4px;
+    font-size: 7px;
+    border-width: 3px;
+  }
+
+  .option img {
+    height: 27px;
+    max-width: 35px;
+  }
+
+  .option small {
+    font-size: 6px;
+  }
+
+  #checkout-button,
+  #order-another-button {
+    font-size: 8px;
+  }
+
+  .popup-content {
+    padding: 20px 12px;
+  }
+
+  #confirmation-message {
+    font-size: 9px;
+  }
+
+  .popup-buttons {
+    gap: 8px;
+  }
+
+  .popup-button {
+    font-size: 7px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
